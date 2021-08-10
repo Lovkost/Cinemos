@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.cinemos.R
 import com.example.cinemos.ui.main.viewModel.MainViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -33,13 +34,17 @@ class HomeFragment : Fragment() {
         val bottomNavigationView = view?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
         bottomNavigationView?.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.itemHome -> {
-true
+                R.id.itemHome -> { Toast.makeText(context,"Home page",Toast.LENGTH_SHORT).show()
+return@setOnNavigationItemSelectedListener true
                 }
-                R.id.itemFavorite -> true
-                R.id.itemProfile -> true
-                else -> false
+                R.id.itemFavorite -> {Toast.makeText(context,"Favorite page",Toast.LENGTH_SHORT).show()
+                return@setOnNavigationItemSelectedListener true}
+                R.id.itemProfile -> {
+                    Toast.makeText(context,"Profile page",Toast.LENGTH_SHORT).show()
+                    return@setOnNavigationItemSelectedListener true
+                }
             }
+            false
         }
     }
 }
