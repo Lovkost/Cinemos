@@ -31,20 +31,5 @@ class HomeFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        val bottomNavigationView = view?.findViewById<BottomNavigationView>(R.id.bottomNavigation)
-        bottomNavigationView?.setOnNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.itemHome -> { Toast.makeText(context,"Home page",Toast.LENGTH_SHORT).show()
-return@setOnNavigationItemSelectedListener true
-                }
-                R.id.itemFavorite -> {Toast.makeText(context,"Favorite page",Toast.LENGTH_SHORT).show()
-                return@setOnNavigationItemSelectedListener true}
-                R.id.itemProfile -> {
-                    Toast.makeText(context,"Profile page",Toast.LENGTH_SHORT).show()
-                    return@setOnNavigationItemSelectedListener true
-                }
-            }
-            false
-        }
     }
 }
