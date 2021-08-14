@@ -10,4 +10,5 @@
     android:layout_height="wrap_content"
     android:textSize="@dimen/screenMainSize"
     android:text="Тут ващ профиль"/>
+
 </FrameLayout>
