@@ -11,35 +11,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
-//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigation)
         val view = binding.root
         setContentView(view)
         if (savedInstanceState == null) {
-            val fragment = HomeFragment()
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                .replace(R.id.container, HomeFragment.newInstance())
                 .commit()
         }
         binding.bottomNavigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.itemHome -> {
-                    val fragment = HomeFragment()
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                        .replace(R.id.container, HomeFragment())
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.itemFavorite -> {
-                    val fragment = FavoriteFragment()
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                        .replace(R.id.container, FavoriteFragment())
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.itemProfile -> {
-                    val fragment = ProfileFragment()
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.container, fragment, fragment.javaClass.getSimpleName())
+                        .replace(R.id.container, ProfileFragment())
                         .commit()
                     return@setOnNavigationItemSelectedListener true
                 }
