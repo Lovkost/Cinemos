@@ -12,50 +12,47 @@
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/nowWatch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+         />
 
-    <TextView
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nowWatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nowWatching"
         android:textColor="@color/black"
         android:textSize="@dimen/screenMainSize"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintTop_toBottomOf="@id/search_bar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainFragmentRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/popular"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nowWatch"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+        app:layout_constraintTop_toBottomOf="@id/nowWatch" />
 
-    <TextView
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/popular"
         android:textColor="@color/black"
         android:textSize="@dimen/screenMainSize"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/mainFragmentRecyclerView"
+        app:layout_constraintVertical_bias="0.063" />
 
     <FrameLayout
         android:id="@+id/loadingLayout"

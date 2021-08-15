@@ -41,7 +41,9 @@ class MainFragmentAdapter :
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movieData: MovieData) {
-            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = movieData.title
+            val dataTitle = movieData.title
+            if(dataTitle.length<=30) itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = dataTitle
+            else itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = dataTitle.substring(0,30) + "..."
             itemView.setOnClickListener {
                 Toast.makeText(
                     itemView.context,

@@ -11,14 +11,15 @@
         android:layout_width="@dimen/width_image_recycler_view"
         android:layout_height="@dimen/height_image_recycler_view"
         android:src="@drawable/golgopha"
-        app:layout_constraintBottom_toBottomOf="@id/mainFragmentRecyclerViewTextView"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerViewTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mainFragmentRecyclerViewTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/width_image_recycler_view"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="@dimen/recycler_view_text_size"
@@ -34,4 +35,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainFragmentRecyclerViewTextView" />
+    <View
+        android:layout_width="1dp"
+        android:layout_height="@dimen/height_image_recycler_view"
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@id/mainFragmentRecyclerView_image"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
