@@ -5,7 +5,7 @@ import com.example.cinemos.R
 
 class RepositoryImpl : Repository {
     override fun getMovieFromServer(): MovieData {
-        return MovieData("Aasd", 7.4, 2000, "asdsdsad")
+        return MovieData("Aasd", "7.4", "2000", "asdsdsad")
     }
 
     override fun getMovieFromLocal(): List<MovieData> {

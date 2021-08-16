@@ -10,10 +10,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemos.R
 import com.example.cinemos.ui.main.model.MovieData
 
-class MainFragmentAdapter :
+class MainFragmentAdapter(private var onItemViewClickListener: HomeFragment.OnItemViewClickListener?) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
     private var movieData: List<MovieData> = listOf()
+
+    fun removeListener(){
+        onItemViewClickListener = null
+    }
 
     fun setMovie(data: List<MovieData>) {
         movieData = data
@@ -41,15 +45,9 @@ class MainFragmentAdapter :
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(movieData: MovieData) {
-            val dataTitle = movieData.title
-            if(dataTitle.length<=30) itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = dataTitle
-            else itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = dataTitle.substring(0,30) + "..."
+            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = movieData.title
             itemView.setOnClickListener {
-                Toast.makeText(
-                    itemView.context,
-                    movieData.title,
-                    Toast.LENGTH_LONG
-                ).show()
+                onItemViewClickListener?.onItemViewClick(movieData)
             }
         }
     }

@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.cinemos.R
 import com.example.cinemos.databinding.MainFragmentBinding
+import com.example.cinemos.ui.main.model.MovieData
 import com.example.cinemos.ui.main.viewModel.AppState
 import com.example.cinemos.ui.main.viewModel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -16,7 +18,23 @@ class HomeFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
-    private val adapter = MainFragmentAdapter()
+    private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
+        override fun onItemViewClick(movieData: MovieData) {
+            val manager = activity?.supportFragmentManager
+            if (manager != null) {
+                val bundle = Bundle()
+                bundle.putParcelable(InsideFragment.BUNDLE_EXTRA, movieData)
+                manager.beginTransaction()
+                    .add(R.id.container, InsideFragment.newInstance(bundle))
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+            }
+        }
+    })
+
+    companion object {
+        fun newInstance() = HomeFragment()
+    }
 
 
     override fun onCreateView(
@@ -24,11 +42,12 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = MainFragmentBinding.inflate(inflater, container, false)
-        return binding.root
+        val view = binding.root
+        return view
     }
 
-    override fun onViewCreated(view: View,savedInstanceState: Bundle?) {
-        super.onViewCreated(view,savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.mainFragmentRecyclerView.adapter = adapter
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
@@ -36,31 +55,30 @@ class HomeFragment : Fragment() {
     }
 
     private fun renderData(appState: AppState) {
-        with(binding) {
-            when (appState) {
-                is AppState.Success -> {
-                    loadingLayout.visibility = View.GONE
-                    adapter.setMovie(appState.movieData)
-                }
-                is AppState.Loading -> {
-                    loadingLayout.visibility = View.VISIBLE
-                }
-                is AppState.Error -> {
-                    loadingLayout.visibility = View.GONE
-                    Snackbar
-                        .make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Reload") { viewModel.getMovie() }
-                        .show()
-                }
+        when (appState) {
+            is AppState.Success -> {
+                binding.loadingLayout.visibility = View.GONE
+                adapter.setMovie(appState.movieData)
+            }
+            is AppState.Loading -> {
+                binding.loadingLayout.visibility = View.VISIBLE
+            }
+            is AppState.Error -> {
+                binding.loadingLayout.visibility = View.GONE
+                Snackbar
+                    .make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("Reload") { viewModel.getMovie() }
+                    .show()
             }
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onDestroy() {
+        adapter.removeListener()
+        super.onDestroy()
     }
-    companion object {
-        fun newInstance() = HomeFragment()
+
+    interface OnItemViewClickListener {
+        fun onItemViewClick(movieData: MovieData)
     }
 }

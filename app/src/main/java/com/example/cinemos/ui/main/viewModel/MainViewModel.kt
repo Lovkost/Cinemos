@@ -17,9 +17,6 @@ class MainViewModel(
     fun getMovie() = getDataFromLocalSource()
 
     fun getDataFromLocalSource() {
-        for (i in 0..10){
-
-        }
         liveDataToObserve.value = AppState.Loading
         Thread {
             sleep(1000)
