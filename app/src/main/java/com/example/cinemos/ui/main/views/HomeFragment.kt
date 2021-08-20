@@ -20,12 +20,11 @@ class HomeFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(movieData: MovieData) {
-            val manager = activity?.supportFragmentManager
-            if (manager != null) {
-                val bundle = Bundle()
-                bundle.putParcelable(InsideFragment.BUNDLE_EXTRA, movieData)
-                manager.beginTransaction()
-                    .add(R.id.container, InsideFragment.newInstance(bundle))
+            activity?.supportFragmentManager?.apply {
+                beginTransaction()
+                    .add(R.id.container, InsideFragment.newInstance(Bundle().apply {
+                        putParcelable(InsideFragment.BUNDLE_EXTRA, movieData)
+                    }))
                     .addToBackStack("")
                     .commitAllowingStateLoss()
             }

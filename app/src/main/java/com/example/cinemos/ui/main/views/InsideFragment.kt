@@ -23,13 +23,13 @@ class InsideFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movie = arguments?.getParcelable<MovieData>(BUNDLE_EXTRA)
-        if (movie != null) {
+        arguments?.getParcelable<MovieData>(BUNDLE_EXTRA)?.let{ movie->
+        movie.title.also {
             binding.titleFragmentInside.text = movie.title
             binding.ratingFragmentInside.text = movie.rating
             binding.budgetFragmentInside.text = movie.budget
             binding.descriptionFragmentInside.text = movie.description
-        }
+        }}
     }
 
     companion object {
