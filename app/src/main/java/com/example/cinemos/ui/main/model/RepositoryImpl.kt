@@ -1,14 +1,18 @@
 package com.example.cinemos.ui.main.model
 
 import android.media.Image
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.cinemos.R
 
 class RepositoryImpl : Repository {
-    override fun getMovieFromServer(): MovieData {
-        return MovieData("Aasd", "7.4", "2000", "asdsdsad")
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMovieFromServer(): MovieDTO {
+        return Model().loadMovie()
     }
 
-    override fun getMovieFromLocal(): List<MovieData> {
-        return getMovie()
+    @RequiresApi(Build.VERSION_CODES.N)
+    override fun getMovieFromLocal(): MovieDTO {
+        return Model().loadMovie()
     }
 }

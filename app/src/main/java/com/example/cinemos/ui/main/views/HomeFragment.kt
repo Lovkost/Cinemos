@@ -1,15 +1,17 @@
 package com.example.cinemos.ui.main.views
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cinemos.R
 import com.example.cinemos.databinding.MainFragmentBinding
-import com.example.cinemos.ui.main.model.MovieData
+import com.example.cinemos.ui.main.model.FactDTO
 import com.example.cinemos.ui.main.viewModel.AppState
 import com.example.cinemos.ui.main.viewModel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -19,7 +21,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
-        override fun onItemViewClick(movieData: MovieData) {
+        override fun onItemViewClick(movieData: FactDTO) {
             val manager = activity?.supportFragmentManager
             if (manager != null) {
                 val bundle = Bundle()
@@ -46,6 +48,7 @@ class HomeFragment : Fragment() {
         return view
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mainFragmentRecyclerView.adapter = adapter
@@ -54,6 +57,7 @@ class HomeFragment : Fragment() {
         viewModel.getDataFromLocalSource()
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
@@ -79,6 +83,6 @@ class HomeFragment : Fragment() {
     }
 
     interface OnItemViewClickListener {
-        fun onItemViewClick(movieData: MovieData)
+        fun onItemViewClick(movieData: FactDTO)
     }
 }

@@ -1,29 +1,31 @@
 package com.example.cinemos.ui.main.views
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinemos.R
-import com.example.cinemos.ui.main.model.MovieData
+import com.example.cinemos.ui.main.model.FactDTO
+import com.example.cinemos.ui.main.model.Model
+import com.example.cinemos.ui.main.model.MovieDTO
 
 class MainFragmentAdapter(private var onItemViewClickListener: HomeFragment.OnItemViewClickListener?) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
-    private var movieData: List<MovieData> = listOf()
-
+    @RequiresApi(Build.VERSION_CODES.N)
+    private  var movieData: MovieDTO = Model().loadMovie()
     fun removeListener(){
         onItemViewClickListener = null
     }
 
-    fun setMovie(data: List<MovieData>) {
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun setMovie(data: MovieDTO) {
         movieData = data
         notifyDataSetChanged()
     }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -34,18 +36,20 @@ class MainFragmentAdapter(private var onItemViewClickListener: HomeFragment.OnIt
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        holder.bind(movieData[position])
+        movieData.results[position]?.let { holder.bind(it) }
     }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun getItemCount(): Int {
-        return movieData.size
+        return movieData.results.size
     }
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(movieData: MovieData) {
-            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = movieData.title
+        fun bind(movieData: FactDTO) {
+            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerViewTextView).text = movieData.original_title
             itemView.setOnClickListener {
                 onItemViewClickListener?.onItemViewClick(movieData)
             }
