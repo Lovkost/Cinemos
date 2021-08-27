@@ -21,7 +21,6 @@ private const val REQUEST_API_KEY = "api_key"
  const val NOW_PLAYING = "now_playing"
 const val API_KEY = "80532f6339bb492b1aa7aec6675487b2"
 
-
 class DetailsService(name: String = "DetailService") : IntentService(name) {
 
     private val broadcastIntent = Intent(DETAILS_INTENT_FILTER)

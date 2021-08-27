@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.cinemos.databinding.FragmentInsideBinding
 import com.example.cinemos.ui.main.model.*
-
+const val CONNECTIVITY_ACTION = "CONNECTIVITY_ACTION"
 const val DETAILS_INTENT_FILTER = "DETAILS INTENT FILTER"
 const val DETAILS_LOAD_RESULT_EXTRA = "LOAD RESULT"
 const val DETAILS_INTENT_EMPTY_EXTRA = "INTENT IS EMPTY"
@@ -42,6 +42,7 @@ class InsideFragment : Fragment() {
                 DETAILS_REQUEST_ERROR_EXTRA -> TODO(PROCESS_ERROR)
                 DETAILS_REQUEST_ERROR_MESSAGE_EXTRA -> TODO(PROCESS_ERROR)
                 DETAILS_URL_MALFORMED_EXTRA -> TODO(PROCESS_ERROR)
+                CONNECTIVITY_ACTION->checkConnection()
                 DETAILS_RESPONSE_SUCCESS_EXTRA -> renderData(
                     FactDTO(
                         intent.getStringExtra(DETAILS_TITLE_EXTRA),
@@ -53,6 +54,10 @@ class InsideFragment : Fragment() {
                 else -> TODO(PROCESS_ERROR)
             }
         }
+    }
+
+    private fun checkConnection() {
+        TODO("CheckInternetConnetion")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

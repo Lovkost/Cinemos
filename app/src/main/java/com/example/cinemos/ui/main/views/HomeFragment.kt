@@ -1,5 +1,6 @@
 package com.example.cinemos.ui.main.views
 
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,6 +16,12 @@ import com.example.cinemos.ui.main.model.FactDTO
 import com.example.cinemos.ui.main.viewModel.AppState
 import com.example.cinemos.ui.main.viewModel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
+import android.net.ConnectivityManager
+
+import android.net.NetworkInfo
+
+
+
 
 class HomeFragment : Fragment() {
     private var _binding: MainFragmentBinding? = null
