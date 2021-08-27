@@ -9,5 +9,5 @@ data class FactDTO(
     val popularity: String?,
     val budget: String?,
     val overview:String?,
-    val poster_path:String?
+//    val poster_path:String?
 ) : Parcelable
