@@ -2,8 +2,8 @@ package com.example.cinemos.ui.main.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cinemos.ui.main.model.Repository
-import com.example.cinemos.ui.main.model.RepositoryImpl
+import com.example.cinemos.ui.main.repository.Repository
+import com.example.cinemos.ui.main.repository.RepositoryImpl
 import java.lang.Thread.sleep
 
 class MainViewModel(

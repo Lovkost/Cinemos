@@ -8,7 +8,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
+import com.bumptech.glide.Glide
+import com.example.cinemos.R
 import com.example.cinemos.databinding.FragmentInsideBinding
 import com.example.cinemos.ui.main.model.FactDTO
 import com.example.cinemos.ui.main.model.MovieDTO
@@ -54,14 +57,18 @@ class InsideFragment : Fragment() {
     }
 
      private fun displayMovie(movieDTO: FactDTO) {
+         val link = "https://www.themoviedb.org/t/p/w600_and_h900_bestv2"
+         val imageView = view?.findViewById<ImageView>(R.id.imageViewFragmentInside)
         with(binding) {
             mainView.visibility = View.VISIBLE
             loadingLayout.visibility = View.GONE
-
             titleFragmentInside.text = movieDTO.original_title
                 ratingFragmentInside.text = movieDTO.popularity
                 budgetFragmentInside.text = movieDTO.budget
                 descriptionFragmentInside.text = movieDTO.overview
+            if (imageView != null) {
+                context?.let { Glide.with(it).load("$link${movieDTO.poster_path}").into(imageView) }
+            }
 
         }
     }

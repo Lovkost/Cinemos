@@ -11,7 +11,7 @@ import java.net.URL
 import java.util.stream.Collectors
 import javax.net.ssl.HttpsURLConnection
 
-private const val API_KEY = "80532f6339bb492b1aa7aec6675487b2"
+const val API_KEY = "80532f6339bb492b1aa7aec6675487b2"
 
 class Model {
 
