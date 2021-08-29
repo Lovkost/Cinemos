@@ -1,5 +1,7 @@
 package com.example.cinemos.ui.main.viewModel
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cinemos.ui.main.repository.Repository
@@ -14,8 +16,10 @@ class MainViewModel(
 
     fun getLiveData() = liveDataToObserve
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun getMovie() = getDataFromLocalSource()
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun getDataFromLocalSource() {
         liveDataToObserve.value = AppState.Loading
         Thread {

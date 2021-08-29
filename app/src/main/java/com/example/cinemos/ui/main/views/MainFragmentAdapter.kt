@@ -14,12 +14,13 @@ import com.example.cinemos.R
 import com.example.cinemos.ui.main.model.FactDTO
 import com.example.cinemos.ui.main.model.Model
 import com.example.cinemos.ui.main.model.MovieDTO
-lateinit var context: Context
+
 class MainFragmentAdapter(private var onItemViewClickListener: HomeFragment.OnItemViewClickListener?) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     private  var movieData: MovieDTO = Model().loadMovie()
+    lateinit var context: Context
     fun removeListener(){
         onItemViewClickListener = null
     }
