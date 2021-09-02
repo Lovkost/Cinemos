@@ -9,10 +9,14 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.cinemos.R
+import com.example.cinemos.ui.main.app.App.Companion.getHistoryDao
 import com.example.cinemos.ui.main.model.FactDTO
+import com.example.cinemos.ui.main.repository.LocalRepository
+import com.example.cinemos.ui.main.repository.LocalRepositoryImpl
 import com.example.cinemos.ui.main.viewModel.MainViewModel
 
 class NotesFragment : Fragment() {
+    private val historyRepository: LocalRepository = LocalRepositoryImpl(getHistoryDao())
     private lateinit var movieBundle: FactDTO
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +29,7 @@ class NotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val button = view.findViewById<Button>(R.id.saveButton)
         val editTextNote = view.findViewById<EditText>(R.id.yourNote)
-        getNotes()
+        getNotes(editTextNote)
         button.setOnClickListener {
             saveNotes(editTextNote.text.toString())
             Toast.makeText(context, "Сохранили", Toast.LENGTH_SHORT).show()
@@ -36,8 +40,8 @@ class NotesFragment : Fragment() {
         MainViewModel().saveCityToDB(text)
     }
 
-    private fun getNotes() {
-
+    private fun getNotes(editTextNote: EditText) {
+        editTextNote.setText(historyRepository.getAllHistory().toString())
     }
 
     companion object {
