@@ -43,6 +43,9 @@ class InsideFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.noteButton.setOnClickListener {
+            fragmentManager?.beginTransaction()?.replace(R.id.container,NotesFragment.newInstance())?.commit()
+        }
         displayMovie(movieBundle)
     }
 

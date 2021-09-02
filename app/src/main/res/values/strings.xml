@@ -10,4 +10,11 @@
     <string name="rating">Rating:</string>
     <string name="budget">Budget:</string>
     <string name="noInternetConnection">Нет интернет соединения</string>
+    <string name="searchitem">searchItem</string>
+    <string name="filter">filter</string>
+    <string name="adultContent">Взрослый контент</string>
+    <string name="note">Заметка</string>
+    <string name="yourNote">Ваша заметка</string>
+    <string name="hintEditText">Начните вводить тут..</string>
+    <string name="save">Сохранить</string>
 </resources>

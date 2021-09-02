@@ -3,6 +3,8 @@ package com.example.cinemos.ui.main.model
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.example.cinemos.ui.main.views.FilterFragment
+import com.example.cinemos.ui.main.views.IS_ADULT_KEY
 import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -14,11 +16,9 @@ import javax.net.ssl.HttpsURLConnection
 const val API_KEY = "80532f6339bb492b1aa7aec6675487b2"
 
 class Model {
-
     @RequiresApi(Build.VERSION_CODES.N)
     fun loadMovie() :MovieDTO {
         lateinit var movieDTO: MovieDTO
-
         try {
             val uri =
                 URL("https://api.themoviedb.org/3/movie/now_playing?api_key=$API_KEY&language=ru-RU")

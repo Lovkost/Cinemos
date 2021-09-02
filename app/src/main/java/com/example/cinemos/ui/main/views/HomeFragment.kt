@@ -3,14 +3,18 @@ package com.example.cinemos.ui.main.views
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.cinemos.R
 import com.example.cinemos.databinding.MainFragmentBinding
+import com.example.cinemos.ui.main.adapters.MainFragmentAdapter
 import com.example.cinemos.ui.main.model.FactDTO
 import com.example.cinemos.ui.main.viewModel.AppState
 import com.example.cinemos.ui.main.viewModel.MainViewModel
@@ -52,11 +56,26 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.mainFragmentRecyclerView.adapter = adapter
-        val flag = context?.let { CheckConnectionFragment.newInstance().isOnline(it) }
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
         viewModel.getDataFromLocalSource()
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId){
+                R.id.searchItem-> {searchItemClick()}
+                R.id.filterItem -> {
+                fragmentManager?.beginTransaction()?.replace(R.id.container,FilterFragment())?.commit()
+                return@setOnMenuItemClickListener true
+            }
+            }
+            false
+        }
+
     }
+
+    private fun searchItemClick() {
+        Toast.makeText(context,"Открылся поиск",Toast.LENGTH_SHORT).show()
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     private fun renderData(appState: AppState) {

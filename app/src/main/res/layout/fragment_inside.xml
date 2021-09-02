@@ -15,7 +15,6 @@
         android:id="@+id/imageViewFragmentInside"
         android:layout_width="200dp"
         android:layout_height="300dp"
-        android:src="@drawable/golgopha"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +54,7 @@
         app:layout_constraintStart_toEndOf="@id/imageViewFragmentInside"
         app:layout_constraintTop_toBottomOf="@id/constRating" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/budgetFragmentInside"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -63,6 +62,13 @@
         app:layout_constraintStart_toEndOf="@id/constBudget"
         app:layout_constraintTop_toBottomOf="@id/ratingFragmentInside"
         tools:text="15000000" />
+        <Button
+            android:id="@+id/noteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/budgetFragmentInside"
+            app:layout_constraintStart_toEndOf="@id/imageViewFragmentInside"
+            android:text="@string/note"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/descriptionFragmentInside"

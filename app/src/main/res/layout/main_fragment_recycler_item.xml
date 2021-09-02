@@ -10,7 +10,6 @@
         android:id="@+id/mainFragmentRecyclerView_image"
         android:layout_width="@dimen/width_image_recycler_view"
         android:layout_height="@dimen/height_image_recycler_view"
-        android:src="@drawable/golgopha"
         app:layout_constraintBottom_toTopOf="@id/mainFragmentRecyclerViewTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
