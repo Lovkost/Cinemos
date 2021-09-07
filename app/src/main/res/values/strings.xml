@@ -17,4 +17,5 @@
     <string name="yourNote">Ваша заметка</string>
     <string name="hintEditText">Начните вводить тут..</string>
     <string name="save">Сохранить</string>
+    <string name="contacts">contacts</string>
 </resources>

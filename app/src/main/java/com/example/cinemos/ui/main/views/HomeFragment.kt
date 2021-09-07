@@ -66,6 +66,14 @@ class HomeFragment : Fragment() {
                 fragmentManager?.beginTransaction()?.replace(R.id.container,FilterFragment())?.commit()
                 return@setOnMenuItemClickListener true
             }
+                R.id.contactsAccess->{
+                    fragmentManager?.apply {
+                        beginTransaction()
+                            .add(R.id.container,ContentProviderFragment.newInstance())
+                            .addToBackStack("")
+                            .commitAllowingStateLoss()
+                    }
+                }
             }
             false
         }

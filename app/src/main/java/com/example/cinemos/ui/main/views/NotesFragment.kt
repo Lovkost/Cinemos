@@ -39,7 +39,7 @@ class NotesFragment : Fragment() {
     private fun saveNotes(text: String) {
         MainViewModel().saveCityToDB(text)
     }
-//
+
     private fun getNotes(editTextNote: EditText) {
         editTextNote.setText(historyRepository.getAllHistory().toString())
     }
