@@ -5,4 +5,5 @@
     <dimen name="width_image_recycler_view">150dp</dimen>
     <dimen name="height_image_recycler_view">215dp</dimen>
     <dimen name="minorViewSize">20sp</dimen>
+    <dimen name="fab_location_icon_size">45dp</dimen>
 </resources>

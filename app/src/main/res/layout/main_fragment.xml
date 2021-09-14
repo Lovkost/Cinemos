@@ -58,6 +58,22 @@
         app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mainFragmentRecyclerView" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mainFragmentFABLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:src="@android:drawable/ic_dialog_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:maxImageSize="@dimen/fab_location_icon_size" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainFragmentFAB"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentFABLocation"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <FrameLayout
         android:id="@+id/loadingLayout"
