@@ -2,62 +2,95 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/mainView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.main.views.HomeFragment">
-
-
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_bar"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/nowWatch"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        android:background="@color/blue"
+        app:menu="@menu/toolbar_item"/>
 
-    <TextView
+
+<!--    <androidx.appcompat.widget.SearchView-->
+<!--        android:id="@+id/search_bar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/nowWatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/nowWatching"
-        android:textSize="@dimen/screenMainSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/black"
+        android:textSize="@dimen/screenMainSize"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.087" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainFragmentRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nowWatch" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/popular"
-        android:textSize="@dimen/screenMainSize"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/black"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-        />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/screenMainSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:menu="@menu/navigation_item" />
+        app:layout_constraintTop_toBottomOf="@id/mainFragmentRecyclerView" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mainFragmentFABLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/design_default_color_primary_dark"
+        android:src="@android:drawable/ic_dialog_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:maxImageSize="@dimen/fab_location_icon_size" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mainFragmentFAB"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/mainFragmentFABLocation"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <FrameLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

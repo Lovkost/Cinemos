@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/constNoteTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/yourNote"
+        android:textSize="@dimen/screenMainSize"
+        android:textColor="@color/black"/>
+    <EditText
+        android:id="@+id/yourNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintEditText"
+        app:layout_constraintTop_toBottomOf="@id/constNoteTV"
+        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="text" />
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintTop_toBottomOf="@id/yourNote"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
